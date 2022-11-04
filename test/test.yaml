@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: default
+  labels:         
+    app: app
+spec:                     
+  replicas: 32
+  selector:        
+    matchLabels:    
+      app: app
+  template:    
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.4
+        resources:
+          limits:
+            cpu: "16"
+            memory: 16000Mi
+          requests:
+            cpu: "6"
+            memory: 4000Mi
+        ports:
+        - containerPort: 80   
+
